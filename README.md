@@ -1,5 +1,5 @@
 # Book-A-Meal
-Book-A-Meal is an application that allows customers to make food orders and helps the food vendor know what the customers want to eat.
+Book-A-Meal is an application that allows customers to make food orders and helps the food vendor know what the customers want to eat. To follow story on pivotal tracker follow this link https://www.pivotaltracker.com/n/projects/2165538
 
 
 ### Table of Contents
@@ -33,4 +33,5 @@ The technologies used are:
 * Sublime text for making html, css and javascript files
 * Git bash for pushing files to git
 * Google chrome to run html files
+
 
