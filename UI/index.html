@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background-image:url('backg.jpg')">
+
+<div class="grid-container">
+
+<header>
+  <h1>Book-A-Meal</h1>
+</header>
+
+
+    <nav class="nav">
+        <ul class="navbar">
+          <li class="navlist"><a class="navlink" href="index.html">Home</a></li>
+          <li class="navlist"><a class="navlink" href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+   <div class="para2">
+    <p>Please sign up or signin to order a meal</p>
+    <P>Please fill the boxes marked (*) to sign up</P>
+   </div>
+
+
+
+
+<div class="fslides">
+  <img class="mslides" src="food1.jpg">
+  <img class="mslides" src="food2.jpg">
+  <img class="mslides" src="food3.jpg">
+</div>
+
+
+<a href="#myModal"><button class="signupbtn">sign up</button></a>
+
+<div id="myModal" class="modal">
+
+ <div class="op">
+        <div class="modal-header"><span><a href="#close" title="Close" class="close">X</a></span><h1>SIGN UP</h1>
+        </div>
+
+        <div class="form1"> 
+
+<form>
+  <fieldset>
+    <legend>Sign up:</legend>
+    <label>*First name:</label>
+    <input type="text" name="firstname" autofocus required>
+    <br><br>
+    <label>*Last name:</label>
+    <input type="text" name="lastname" required>
+    <br><br>
+    <label>*Phone no:</label>
+    <input type="tel" name="contact" required>
+    <br><br>
+    <label>*Email address:</label>
+    <input type="email" name="user_email" required>
+    <br><br>
+    <label>*Username:</label>
+    <input type="text" name="newuserid" required>
+    <br><br>
+    <label>*Password:</label>
+    <input type="password" name="newpsw" required>
+    <br><br>
+    <label>*Retype password:</label>           <input type="password" name="Renewpsw" required>
+    <br><br>
+    <label>Sign up as a:</label> 
+    <input type="radio" name="user" value="Caterer">Caterer
+    <input type="radio" name="user" value="Customer" checked>Customer 
+    <br><br>
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+
+</div>
+        
+    </div>
+
+</div>
+
+    
+<a href="#mysModal"><button class="signinbtn">sign in</button></a>
+
+<div id="mysModal" class="modal">
+
+ <div class="op">
+        <div class="modal-header"><span><a href="#close" title="Close" class="close">X</a></span><h1>SIGN IN</h1>
+        </div>
+
+
+<div class="form2">
+
+<form>
+  <fieldset>
+    <legend>Sign in:</legend>
+    <label>Username:</label>
+    <input type="text" name="userid" required>
+    <br><br>
+    <label>Password:</label>
+    <input type="password" name="password" required>
+    <br><br>
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer class="footer">Copyright &copy; John Adesina</footer>
+
+</div>
+
+
+
+<script src="index.js"></script>
+</body>
+</html>
