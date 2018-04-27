@@ -27,7 +27,10 @@
   "scripts": {
     "start": "nodemon --exec babel-node server/app.js",
     "build": "babel ./server",
-    "test": "mocha --compilers js:babel-core/register server/test/index.js"
+    "test": "mocha --compilers js:babel-core/register server/test/index.js",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
