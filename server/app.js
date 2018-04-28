@@ -23,12 +23,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/meals', meal);
-app.use('/api/v1/mmenus', menu);
+app.use('/api/v1/menus', menu);
 app.use('/api/v1/orders', order);
 
 
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
+
+app.get('*', (req, res) => res.status(200).send({
+  message: 'Welcome To Book a Meal API!!!',
+}));
 
 app.listen('3000', () => {
 console.log('Running on port 3000...')
