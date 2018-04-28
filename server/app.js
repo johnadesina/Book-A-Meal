@@ -2,7 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import meal from './routes/meal';
-//import menu from './routes/menu';
+import menu from './routes/menu';
 import order from './routes/order';
 
 
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/meals', meal);
-//app.use('/api/v1/menus', menu);
+app.use('/api/v1/menus', menu);
 app.use('/api/v1/orders', order);
 
 
