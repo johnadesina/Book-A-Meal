@@ -34,8 +34,6 @@ app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome To Book a Meal API!!!',
 }));
 
-app.listen('3000', () => {
-console.log('Running on port 3000...')
-});
+
 
 export default app;
