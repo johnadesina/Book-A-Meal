@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/meals', meal);
-app.use('/api/v1/mmenus', menu);
+app.use('/api/v1/menus', menu);
 app.use('/api/v1/orders', order);
 
 
