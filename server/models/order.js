@@ -1,21 +1,35 @@
-const Orders =   [
-{
-	orderid: 1,
-	mealOp1:'rice with fish',
-	mealOp2:'yam and egg',
-	mealOp3:'rice with beef', 
-	total:'5000'
-    },
-    {
-    orderid: 2,
-	mealOp1:'yam with fish',
-	mealOp2:'yam and stew',
-	mealOp3:'rice with turkey',
-	total:'6000'
-
-}
-
-
-]
-
-export default Orders;
+export default (sequelize, DataTypes) => {
+  const Order = sequelize.define('Order', {
+  	    userId: {
+  	    	type: DataTypes.INTEGER,
+    	    allowNull: false
+  	    },
+    	mealOrder: {
+    		mealId: {
+    		    type: DataTypes.INTEGER,
+    	        allowNull: false
+    	},
+    	    mealName: {
+    		    type: DataTypes.STRING,
+    	        allowNull: false
+    	},
+    	    mealPrice: {
+    		   type: DataTypes.INTEGER,
+    	       allowNull: false
+    	}
+    	},
+    	Total: {
+    		type: DataTypes.INTEGER,
+    	    allowNull: false
+    	}
+  });
+  Order.associate = models => {
+    Order.belongsTo(models.Users, {
+      foreignKey: 'userId',
+    });
+    Order.hasMany(models.Meal, {
+      foreignKey: 'mealId',
+    });
+  };
+  return Order;
+};

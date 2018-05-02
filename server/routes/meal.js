@@ -1,16 +1,15 @@
 import meal from '../controllers/meal';
 import express from 'express';
 import bodyParser from 'body-parser';
-
-const jsonParser = bodyParser.json();
+import Auth from '../middlewares/authentication';
+import validate from '../middlewares/validations';
 
 const router = express.Router();
 
-router.get('/', meal.get);
-router.get('/:id', meal.getA);
-router.post('/', jsonParser, meal.add);
-router.put('/:id', jsonParser, meal.put);
-router.delete('/:id', jsonParser, meal.delete);
-
+router.get('/', Auth.Verify, meal.getMeals);
+router.get('/:id', Auth.Verify, meal.getMeal);
+router.post('/', Auth.Verify, Auth.Admin, validate.createMeal, meal.addMeal);
+router.put('/:id', Auth.Verify, Auth.Admin, validate.createMeal, meal.putMeal);
+router.delete('/:id', Auth.Verify, Auth.Admin, meal.deleteMeal);
 
 export default router;

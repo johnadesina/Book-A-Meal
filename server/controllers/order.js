@@ -1,69 +1,90 @@
-import Orders from '../models/order';
+import model from '../models/order';
+import jwt from 'jsonwebtoken';
+import Sequelize from 'sequelize';
+import Auth from '../middlewares/authentication';
+import bcrypt from 'bcryptjs';
 
-const orders = Orders;
+const orders = model.Order;
 
-class Order {
-	get(req,res){
-		return res.json({
-			order: orders,
-			error: false
-		});
-
+class MakeOrder {
+	getOrders(req,res){
+		return orders
+      .all()
+      .then((getAll) => {
+        res.status(200).send({
+          message: 'Successful',
+          getAll
+        });
+      });
 	}
 
-	add(req,res){
-		if(!req.body.name){
-		  return res.json({
-		  	message: 'food name missing',
-		  	error: true
-		  });	
+	addOrder(req,res){
+	const {mealName, mealPrice, userId, Total, mealOrder} = req.body;
+    const Decoded = jwt.decode(req.headers.token);
+    orders.create({
+      userId: req.decoded.id,
+      mealName,
+      mealPrice,
+      Total,
+      mealOrder
+    })
+      .then(created => res.status(200).send({
+        message: 'Order Added Successfully',
+        created
+      }))
+      .catch(err => res.status(500).send({
+        message: 'Error occured!'
+      }));
 		}
 
-		orders.push(req.body)
-		return res.json({
-			message: 'Success',
-			error: false
-		});
-
-		}
-
-	put(req,res){
-		for(let i=0; i < orders.length; i++){
-			if(orders[i].orderid === parseInt(req.params.orderid, 10)){
-				orders[i].mealOp1 = req.body.mealOp1;
-				orders[i].mealOp2 = req.body.mealOp2;
-				orders[i].mealOp3 = req.body.mealOp3;
-				orders[i].total = req.body.total;
-				return res.json({
-					message: 'Success',
-					error: false
-				});
-			}
-		}
-		return res.status(404).json({
-			message: 'order not found',
-			error: true
-		});
+	putOrder(req,res){
+		const {mealName, mealPrice, userId, Total, mealOrder} = req.body;
+        const Decoded = jwt.decode(req.headers.token);
+    orders.findOne({
+      where: {
+        userId: req.decoded.id,
+      }
+    })
+      .then(orders => {
+        if (!orders) {
+          return res.status(404).send({
+            message: 'order Not Found',
+          });
+        }
+        return orders
+          .update({
+            userId: req.body.userId || center.userId,
+            mealName: req.body.mealName || center.mealName,
+            mealPrice: req.body.mealPrice || center.mealPrice,
+            Total: req.body.Total || center.Total,
+            mealOrder: req.body.mealOrder || center.mealOrder
+          })
+          .then(created => res.status(200).send({
+            message: 'Update Successful',
+            created
+          }))
+          .catch(err => res.status(500).send({
+            message: 'Some error occured!'
+          }));
+      });
 	}
 
-	getA(req,res){
-		for(let i=0; i < orders.length; i++){
-			if(orders[i].orderid === parseInt(req.params.orderid, 10)){
-				return res.json({
-					order: orders[i],
-					message: 'success',
-					error: false
-				});
-			}
-		}
-		return res.status(404).json({
-			message: 'order not found',
-			error: true
-		});
+	getOrder(req,res){
+		return orders
+    .findById(req.params.id).then(found => {
+      if (!found) {
+        res.status(404).send({
+          message: 'order not Found!'
+        })
+      } else {
+        res.status(200).send(found)
+      }
+    })
+    .catch(error => res.status(400).send(error))
 	}	
 
 }
 
 
-const orderController = new Order();
+const orderController = new MakeOrder();
 export default orderController;

@@ -1,15 +1,14 @@
 import order from '../controllers/order';
 import express from 'express';
 import bodyParser from 'body-parser';
-
-const jsonParser = bodyParser.json();
+import Auth from '../middlewares/authentication';
+import validate from '../middlewares/validations';
 
 const router = express.Router();
 
-router.get('/', order.get);
-router.get('/:orderid', order.getA);
-router.post('/', jsonParser, order.add);
-router.put('/:orderid', jsonParser, order.put);
-
+router.get('/', Auth.Verify, order.getOrders);
+router.get('/:id', Auth.Verify, order.getOrder);
+router.post('/', Auth.Verify, validate.makeOrder, order.addOrder);
+router.put('/:id', Auth.Verify, validate.makeOrder, order.putOrder);
 
 export default router;

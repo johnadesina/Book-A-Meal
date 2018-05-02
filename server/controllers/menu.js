@@ -1,51 +1,63 @@
-import Menus from '../models/menu';
+import model from '../models/menu';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import Sequelize from 'sequelize';
+import Auth from '../middlewares/authentication';
 
-const menus = Menus;
+const menus = model.Menu;
 
-class Menu {
-	get(req,res){
-		return res.json({
-			menu: menus,
-			error: false
-		});
-
+class SetMenu {
+	getMenus(req,res){
+		return menus
+      .all()
+      .then((getMenus) => {
+        res.status(200).send({
+          message: 'Successful',
+          getAll
+        });
+      });
 	}
 
-	add(req,res){
-		if(!req.body.menuName){
-		  return res.json({
-		  	message: 'name of menu missing',
-		  	error: true
-		  });	
+	addMenu(req,res){
+	const {mealName, mealPrice, mealId, menuDate, menuName, userId, firstOp, secondOp, thirdOp, fourthOp} = req.body;
+    const Decoded = jwt.decode(req.headers.token);
+    menu.create({
+      userId: req.decoded.id,
+      menuName,
+      menuDate,
+      firstOp,
+      secondOp,
+      thirdOp,
+      fourthOp,
+      mealName,
+      mealPrice
+    })
+      .then(created => res.status(200).send({
+        message: 'Menu Added Successfully',
+        created
+      }))
+      .catch(err => res.status(500).send({
+        message: 'Error occured!'
+      }));
 		}
 
-		menus.push(req.body)
-		return res.json({
-			message: 'Success',
-			error: false
-		});
 
-		}
-
-
-	getA(req,res){
-		for(let i=0; i < menus.length; i++){
-			if(menus[i].menuid === parseInt(req.params.menuid, 10)){
-				return res.json({
-					menu: menus[i],
-					message: 'success',
-					error: false
-				});
-			}
-		}
-		return res.status(404).json({
-			message: 'menu not found',
-			error: true
-		});
+	getMenu(req,res){
+	return menus
+    .findById(req.params.id).then(found => {
+      if (!found) {
+        res.status(404).send({
+          message: 'menu not Found!'
+        })
+      } else {
+        res.status(200).send(found)
+      }
+    })
+    .catch(error => res.status(400).send(error))
 	}	
 
 }
 
 
-const menuController = new Menu();
+const menuController = new SetMenu();
 export default menuController;

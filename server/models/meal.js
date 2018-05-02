@@ -1,15 +1,28 @@
-const Meals =  [
-{
-	id: 1,
-	name: 'Beef with chips',
-	Price: '1000'
-},
-{
-	id: 2,
-    name: 'rice with fish',
-    Price: '1500'
-}
-
-]
-
-export default Meals;
+export default (sequelize, DataTypes) => {
+  const Meal = sequelize.define('Meal', {
+    mealName: {
+       type: DataTypes.STRING,
+       allowNul: false
+   },
+    mealPrice: {
+    	type: DataTypes.INTEGER,
+        allowNul: false
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNul: false
+    }
+  });
+  Meal.associate = models => {
+    Meal.hasMany(models.Order, {
+      foreignKey: 'orderId',
+    });
+    Meal.belongsTo(models.Users, {
+      foreignKey: 'userId',
+    });
+    Meal.belongsTo(models.Menu, {
+      foreignKey: 'menuId',
+    });
+  };
+  return Meal;
+};
