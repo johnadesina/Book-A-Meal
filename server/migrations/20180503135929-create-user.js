@@ -17,14 +17,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       phoneno: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      }
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       email: {
         type: Sequelize.STRING,
         isEmail: true,
@@ -32,13 +32,18 @@ module.exports = {
         unique: true
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allownull: false,
+      },
+      confirmPassword: {
+        type: Sequelize.STRING,
+        allownull: false,
       },
       role: {
         type: Sequelize.STRING,
         allownull: false,
         defaultValue: 'Regular'
-      },
+      }, 
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

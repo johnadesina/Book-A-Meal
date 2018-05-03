@@ -1,13 +1,15 @@
 export default (sequelize, DataTypes) => {
   var Users = sequelize.define('Users', {
     firstname: {
-    	type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     lastname: {
-    	type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     phoneno: {
-    	type: DataTypes.INTEGER
+        type: DataTypes.INTEGER
     },
     email: {
     type: DataTypes.STRING,
@@ -25,6 +27,10 @@ export default (sequelize, DataTypes) => {
     unique: true
   },
   password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  confirmPassword: {
     type: DataTypes.STRING,
     allowNull: false
   },

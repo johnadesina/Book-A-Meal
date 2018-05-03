@@ -1,4 +1,5 @@
-export default {
+'use strict';
+module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Meal', {
       id: {
@@ -11,19 +12,19 @@ export default {
         type: Sequelize.STRING,
         allowNull: false
       },
-      mealPrice:{
+      mealPrice: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      userId:{
+      userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
         references: {
           model: 'Users',
           key: 'id',
           as: 'userId'
         }
-      },
+      }
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

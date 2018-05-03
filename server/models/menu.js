@@ -1,73 +1,49 @@
 export default (sequelize, DataTypes) => {
   const Menu = sequelize.define('Menu', {
-  	userId: {
-  		type: DataTypes.INTEGER,
-    	allowNull: false
-  	},
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     menuDate: {
         type: DataTypes.STRING,
         allowNull: false
     },
     menuName: {
-    	type: DataTypes.STRING,
-    	allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    firstOp: {
-    	mealId: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	},
-    	mealName: {
-    		type: DataTypes.STRING,
-    	    allowNull: false
-    	},
-    	mealPrice: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	}
-    },
-    secondOp: {
-    	mealId: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	},
-    	mealName: {
-    		type: DataTypes.STRING,
-    	    allowNull: false
-    	},
-    	mealPrice: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	}
-    },
-    thirdOp: {
-    	mealId: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	},
-    	mealName: {
-    		type: DataTypes.STRING,
-    	    allowNull: false
-    	},
-    	mealPrice: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	}
-    },
-    fourthOp: {
-    	mealId: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	},
-    	mealName: {
-    		type: DataTypes.STRING,
-    	    allowNull: false
-    	},
-    	mealPrice: {
-    		type: DataTypes.INTEGER,
-    	    allowNull: false
-    	}
-    }
+        mealOne: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        firstPrice: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        mealTwo: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        secondPrice: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        mealThree: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        thirdPrice: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        mealFour: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        fourthPrice: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
   });
   Menu.associate = models => {
     Menu.belongsTo(models.Users, {

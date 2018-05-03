@@ -19,18 +19,20 @@ class SetMenu {
 	}
 
 	addMenu(req,res){
-	const {mealName, mealPrice, mealId, menuDate, menuName, userId, firstOp, secondOp, thirdOp, fourthOp} = req.body;
+	const {menuDate, menuName, userId, mealOne, firstPrice, mealTwo, secondPrice, mealThree, thirdPrice, mealFour, fourthPrice} = req.body;
     const Decoded = jwt.decode(req.headers.token);
     menu.create({
       userId: req.decoded.id,
       menuName,
       menuDate,
-      firstOp,
-      secondOp,
-      thirdOp,
-      fourthOp,
-      mealName,
-      mealPrice
+      mealOne,
+      firstPrice,
+      mealTwo,
+      secondPrice,
+      mealThree,
+      thirdPrice,
+      mealFour,
+      fourthPrice
     })
       .then(created => res.status(200).send({
         message: 'Menu Added Successfully',

@@ -25,7 +25,7 @@ class User {
             phoneno,
             firstName,
             lastName,
-            password: bcrypt.hashSync(password, 10),
+            password: bcrypt.hashSync(password, 10)
           })
             .then((newUser) => { 
               const token = jwt.sign({ user: foundUser }, process.env.SECRET_KEY, {

@@ -5,7 +5,7 @@ export default (sequelize, DataTypes) => {
        allowNul: false
    },
     mealPrice: {
-    	type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNul: false
     },
     userId: {

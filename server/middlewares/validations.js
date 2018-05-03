@@ -6,11 +6,11 @@ class Validation {
       return res.status(400).send({
         username: 'Please Enter Username'
       });
-    } else if (!firstname || typeof fullName !== 'string') {
+    } else if (!firstname || typeof firstname !== 'string') {
       return res.status(400).send({
         email: 'Please Enter Your First Name'
       });
-    } else if (!lastname || typeof fullName !== 'string') {
+    } else if (!lastname || typeof lastname !== 'string') {
       return res.status(400).send({
         email: 'Please Enter Your Last Name'
       });
@@ -64,21 +64,49 @@ class Validation {
   }
   static createMenu(req, res, next) {
 	  const {
-		  mealName, mealPrice, mealId, menuDate, menuName, userId, firstOp, secondOp, thirdOp, fourthOp}
+		  menuDate, menuName, userId, mealOne, firstPrice, mealTwo, secondPrice, mealThree, thirdPrice, mealFour, fourthPrice}
 	= req.body;
-    if (!mealName || typeof mealName !== 'string') {
+    if (!menuName || typeof mealName !== 'string') {
       res.status(400).send({
         message: 'Please Add Name Of Meal!'
       });
-    } else if (!mealPrice || typeof mealPrice !== 2) {
-      res.status(400).send({
-        message: 'Please Add Description!'
-      });
-    } else if (!menuDate || typeof menuDate !== 'string') {
+    } else if (!menuDate || typeof mealDate !== 'string') {
       res.status(400).send({
         message: 'Please Add Date!'
       });
-    } else if (!userId) {
+    } else if (!firstPrice || NaN ) {
+      res.status(400).send({
+        message: 'Please Add first price!'
+      });
+    } else if (!secondPrice || NaN) {
+      res.status(400).send({
+        message: 'Please Add second price!'
+      });
+    } else if (!thirdPrice || NaN) {
+      res.status(400).send({
+        message: 'Please Add third price!'
+      });
+    } else if (!fourthPrice || NaN) {
+      res.status(400).send({
+        message: 'Please Add fourth price!'
+      });
+    }else if (!mealOne || typeof menuDate !== 'string') {
+      res.status(400).send({
+        message: 'Please Add meal one!'
+      });
+    } else if (!mealTwo || typeof menuDate !== 'string') {
+      res.status(400).send({
+        message: 'Please Add meal two!'
+      });
+    } else if (!mealThree || typeof menuDate !== 'string') {
+      res.status(400).send({
+        message: 'Please Add meal three!'
+      });
+    } else if (!mealFour || typeof menuDate !== 'string') {
+      res.status(400).send({
+        message: 'Please Add four!'
+      });
+    }else if (!userId) {
       return res.status(400).send({
         message: 'Field Cannot Be Empty!'
       });
@@ -86,13 +114,13 @@ class Validation {
   }
  static makeOrder(req, res, next) {
     const {
-      mealName, mealPrice, userId, Total, mealOrder}
+      mealName, mealPrice, userId, Total, mealId}
   = req.body; 
     if (!mealName || typeof mealName !== 'string') {
       res.status(400).send({
         message: 'Please Add Name Of Meal!'
       });
-    } else if (!mealPrice || typeof mealPrice !== 2) {
+    } else if (!mealPrice || NaN) {
       res.status(400).send({
         message: 'Please Add Description!'
       });

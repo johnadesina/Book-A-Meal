@@ -1,5 +1,5 @@
 'use strict';
-module.exports = {
+module.exports =  {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Order', {
       id: {
@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Users',
@@ -17,39 +17,22 @@ module.exports = {
           as: 'userId'
         }
       },
-      mealOrder: {
         mealid: {
           allowNull: false,
-          type: Sequelize.INTEGER,
-          references: {
-          model: 'Meal',
-          key: 'id',
-          as: 'mealId'
-        }
+          type: Sequelize.INTEGER
         },
         mealName: {
           allowNull: false,
-          type: Sequelize.STRING,
-          references: {
-          model: 'Meal',
-          key: 'mealName',
-          as: 'mealName'
-        }
+          type: Sequelize.STRING
         },
         mealPrice: {
           allowNull: false,
-          type: Sequelize.INTEGER,
-          references: {
-          model: 'Meal',
-          key: 'mealPrice',
-          as: 'mealPrice'
-        }
-        }
-      },
+          type: Sequelize.INTEGER
+        },
       Total: {
         allowNull: false,
         type: Sequelize.INTEGER
-      }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -19,14 +19,14 @@ class MakeOrder {
 	}
 
 	addOrder(req,res){
-	const {mealName, mealPrice, userId, Total, mealOrder} = req.body;
+	const {mealName, mealPrice, userId, Total, mealId} = req.body;
     const Decoded = jwt.decode(req.headers.token);
     orders.create({
       userId: req.decoded.id,
       mealName,
       mealPrice,
       Total,
-      mealOrder
+      mealId
     })
       .then(created => res.status(200).send({
         message: 'Order Added Successfully',
@@ -38,7 +38,7 @@ class MakeOrder {
 		}
 
 	putOrder(req,res){
-		const {mealName, mealPrice, userId, Total, mealOrder} = req.body;
+		const {mealName, mealPrice, userId, Total, mealId} = req.body;
         const Decoded = jwt.decode(req.headers.token);
     orders.findOne({
       where: {
@@ -57,7 +57,7 @@ class MakeOrder {
             mealName: req.body.mealName || center.mealName,
             mealPrice: req.body.mealPrice || center.mealPrice,
             Total: req.body.Total || center.Total,
-            mealOrder: req.body.mealOrder || center.mealOrder
+            mealId: req.body.mealId || center.mealId
           })
           .then(created => res.status(200).send({
             message: 'Update Successful',
