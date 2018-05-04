@@ -5,33 +5,19 @@ import meal from './routes/meal';
 import menu from './routes/menu';
 import order from './routes/order';
 
-
-
-
-
-
-// Set up the express app
 const app = express();
-
-
 app.use(logger('dev'));
+const jsonParser = bodyParser.json();
 
-// Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/api/v1/meals', meal);
-app.use('/api/v1/menus', menu);
-app.use('/api/v1/orders', order);
-
-
-
-// Setup a default catch-all route that sends back a welcome message in JSON format.
+app.use('/api/v1/meals', jsonParser, meal);
+app.use('/api/v1/menus', jsonParser, menu);
+app.use('/api/v1/orders', jsonParser, order);
 
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome To Book a Meal API!!!',
 }));
-
-
 
 export default app;

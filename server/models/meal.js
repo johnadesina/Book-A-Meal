@@ -9,7 +9,6 @@ const Meals =  [
     name: 'rice with fish',
     Price: '1500'
 }
-
 ]
 
 export default Meals;

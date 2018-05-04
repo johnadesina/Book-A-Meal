@@ -3,82 +3,73 @@ import Meals from '../models/meal';
 const meals = Meals;
 
 class Meal {
-	get(req,res){
+	getMeals(req,res){
 		return res.status(200).json({
 			meal: meals,
 			error: false
 		});
-
 	}
 
-	add(req,res){
+	addMeal(req,res){
 		if(!req.body.name){
-		  return res.json({
+		  return res.status(200).json({
 		  	message: 'name of meal missing',
 		  	error: true
 		  });	
 		}
 
 		meals.push(req.body)
-		return res.json({
+		return res.status(200).json({
 			message: 'Success',
 			error: false
 		});
-
 		}
 
-	put(req,res){
-		for(let i=0; i < meals.length; i++){
-			if(meals[i].id === parseInt(req.params.id, 10)){
-				meals[i].name = req.body.name;
-				meals[i].Price = req.body.Price;
-				return res.json({
+	putMeal(req,res){
+		meals.map(meal => {
+			if(meal.id === parseInt(req.params.id, 10)){
+				meal.name = req.body.name;
+				meal.Price = req.body.Price;
+				return res.status(200).json({
 					message: 'Success',
 					error: false
 				});
 			}
-		}
+		});
 		return res.status(404).json({
 			message: 'meal not found',
 			error: true
 		});
 	}
 
-	delete(req,res){
-		for(let i=0; i < meals.length; i++){
-			if(meals[i].id === parseInt(req.params.id, 10)){
-				meals.splice(i,1);
-				return res.json({
+	deleteMeal(req,res){
+			meals.splice(meals.findIndex(i => i.id === parseInt(req.params.id, 10)),1)
+				return res.status(200).json({
 					message: 'Success',
 					error: false
 				});
-			}
-		}
 		return res.status(404).json({
-			message: 'event not found',
+			message: 'meal not found',
 			error: true
 		});
-
 	}
 
-	getA(req,res){
-		for(let i=0; i < meals.length; i++){
-			if(meals[i].id === parseInt(req.params.id, 10)){
-				return res.json({
-					meal: meals[i],
+	getMeal(req,res){
+		meals.map(meal => {
+			if(meal.id === parseInt(req.params.id, 10)){
+				return res.status(200).json({
+					meal: meal,
 					message: 'success',
 					error: false
 				});
 			}
-		}
+		});
 		return res.status(404).json({
 			message: 'meal not found',
 			error: true
 		});
 	}	
-
 }
-
 
 const mealController = new Meal();
 export default mealController;

@@ -2,13 +2,10 @@ import menu from '../controllers/menu';
 import express from 'express';
 import bodyParser from 'body-parser';
 
-const jsonParser = bodyParser.json();
-
 const router = express.Router();
 
-router.get('/', menu.get);
-router.get('/:menuid', menu.getA);
-router.post('/', jsonParser, menu.add);
-
+router.get('/', menu.getMenus);
+router.get('/:menuid', menu.getMenu);
+router.post('/', menu.addMenu);
 
 export default router;

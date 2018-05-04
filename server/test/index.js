@@ -3,14 +3,11 @@ import { should } from 'chai';
 import supertest from 'supertest';
 import app from '../app';
 
-
 const request = supertest(app);
 
 const getmenuUrl = '/api/v1/menus';
 const getAmenuUrl = '/api/v1/menus/1';
 const addMenuUrl = '/api/v1/menus';
-
-
 
 const getmealUrl = '/api/v1/meals';
 const getAmealUrl = '/api/v1/meals/1';
@@ -19,21 +16,15 @@ const editMealUrl = '/api/v1/meals';
 const editMealUrl1 = '/api/v1/meals/1';
 const deleteMealUrl = '/api/v1/meals/1';
 
-
-
-
 const getorderUrl = '/api/v1/orders';
 const getAorderUrl = '/api/v1/orders/1';
 const addorderUrl = '/api/v1/orders';
 const editorderUrl1 = '/api/v1/orders/1';
 
-
-
 //menu controller test
 
-
 describe('find menus', () => {
-    it('should get menus', (done) => {
+    it('should get all menus', (done) => {
       request.get(`/api/v1/menus`)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -41,7 +32,6 @@ describe('find menus', () => {
         });
     });
 });
-
 
 describe('find menus', () => {
     it('should get a specific menu', (done) => {
@@ -53,7 +43,6 @@ describe('find menus', () => {
     });
 });
 
-
 describe('Set menu', () => {
     it('should add a menu', (done) => {
       request.post('/api/v1/menus')
@@ -64,10 +53,9 @@ describe('Set menu', () => {
     });
 });
 
-
 //menu routes test
 
-describe('API Integration Tests', () => {
+describe(' Menu API Integration Tests', () => {
   describe('Get All Menus', () => {
     it('return 200 for successful', (done) => {
       request.get(getmenuUrl)
@@ -78,8 +66,6 @@ describe('API Integration Tests', () => {
       });
    });
  
-
-
 describe('Add a Menu', () => {
   it('return 200 for successful', (done) => {
       request.post(addMenuUrl)
@@ -120,12 +106,9 @@ describe('Gets a specific Menu', () => {
  });
 });
 
-
-
-
 //meal routes test
 
-describe('API Integration Tests', () => {
+describe('Meal API Integration Tests', () => {
   describe('Get All Meal Options', () => {
     it('return 200 for successful', (done) => {
       request.get(getmealUrl)
@@ -136,8 +119,6 @@ describe('API Integration Tests', () => {
       });
    });
  
-
-
 describe('Add a New Meal Option', () => {
   it('return 200 for successful', (done) => {
       request.post(addMealUrl)
@@ -165,7 +146,6 @@ describe('Gets a specific Meal Option', () => {
             });
       });
     });
-
 
 describe('Edit a Meal Option', () => {
   it('return 404 for unsuccessful update', (done) => {
@@ -211,12 +191,10 @@ describe('Delete a Meal Option', () => {
  });
 });
 
-
-
 //meal controller test
 
 describe('find meals', () => {
-    it('should get meals', (done) => {
+    it('should get all meals', (done) => {
       request.get(`/api/v1/meals`)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -236,7 +214,6 @@ describe('find meals', () => {
     });
 });
 
-
 describe('Post meal', () => {
     it('should add a meal', (done) => {
       request.post('/api/v1/meals')
@@ -246,7 +223,6 @@ describe('Post meal', () => {
         });
     });
 });
-
 
 describe('Edit meal', () => {
     it('should be able to edit a meal', (done) => {
@@ -259,9 +235,8 @@ describe('Edit meal', () => {
     });
 });
 
-
 describe('Edit meal', () => {
-    it('should be able to edit a meal that is not there', (done) => {
+    it('should be able to edit a meal that is not exist', (done) => {
       request.put('/api/v1/meals/3')
         .send({ name: 'beef with rice' })
         .end((err, res) => {
@@ -283,7 +258,7 @@ describe('Delete meal', () => {
 
 
 describe('Delete meal', () => {
-    it('should be able to delete a meal that is not there', (done) => {
+    it('should be able to delete a meal that is not exist', (done) => {
       request.delete('/api/v1/meals/3')
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -292,11 +267,9 @@ describe('Delete meal', () => {
     });
 });
 
-
-
 //order routes test
 
-describe('API Integration Tests', () => {
+describe('Order API Integration Tests', () => {
   describe('Get All Orders', () => {
     it('return 200 for successful', (done) => {
       request.get(getorderUrl)
@@ -306,10 +279,8 @@ describe('API Integration Tests', () => {
         done();
       });
    });
- 
 
-
-describe('Add a New Meal Option', () => {
+describe('Add a New Order', () => {
   it('return 200 for successful', (done) => {
       request.post(addorderUrl)
         .send({
@@ -360,13 +331,10 @@ describe('Edit a order', () => {
  });
 });
 
-
-
-
 //order controller test
 
 describe('find orders', () => {
-    it('should get orders', (done) => {
+    it('should get all orders', (done) => {
       request.get(`/api/v1/orders`)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -374,7 +342,6 @@ describe('find orders', () => {
         });
     });
 });
-
 
 describe('find order', () => {
     it('should get a specific order', (done) => {
@@ -386,9 +353,8 @@ describe('find order', () => {
     });
 });
 
-
 describe('find order', () => {
-    it('should not get an order thats not there', (done) => {
+    it('should not get an order thats not exist', (done) => {
       request.get(`/api/v1/orders/4`)
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -396,7 +362,6 @@ describe('find order', () => {
         });
     });
 });
-
 
 describe('Post order', () => {
     it('should add a order', (done) => {
@@ -407,7 +372,6 @@ describe('Post order', () => {
         });
     });
 });
-
 
 describe('Edit order', () => {
     it('should be able to edit a order', (done) => {
@@ -420,9 +384,8 @@ describe('Edit order', () => {
     });
 });
 
-
 describe('Edit order', () => {
-    it('should not be able to edit a order that is not there', (done) => {
+    it('should not be able to edit a order that is not exist', (done) => {
       request.put('/api/v1/orders/3')
         .send({ mealOp2:'egg and gizzard' })
         .end((err, res) => {

@@ -3,13 +3,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const jsonParser = bodyParser.json();
-
 const router = express.Router();
 
-router.get('/', order.get);
-router.get('/:orderid', order.getA);
-router.post('/', jsonParser, order.add);
-router.put('/:orderid', jsonParser, order.put);
-
+router.get('/', order.getOrders);
+router.get('/:orderid', order.getOrder);
+router.post('/', order.addOrder);
+router.put('/:orderid', order.putOrder);
 
 export default router;

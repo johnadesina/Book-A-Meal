@@ -27,7 +27,6 @@ const Menus =  [
 		mealName: 'rice with beef',
 		mealPrice: '2000'
 	}]}
-
 ]
 
 export default Menus;

@@ -12,10 +12,7 @@ const Orders =   [
 	mealOp2:'yam and stew',
 	mealOp3:'rice with turkey',
 	total:'6000'
-
 }
-
-
 ]
 
 export default Orders;

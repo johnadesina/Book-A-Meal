@@ -3,49 +3,44 @@ import Menus from '../models/menu';
 const menus = Menus;
 
 class Menu {
-	get(req,res){
-		return res.json({
+	getMenus(req,res){
+		return res.status(200).json({
 			menu: menus,
 			error: false
 		});
-
 	}
 
-	add(req,res){
+	addMenu(req,res){
 		if(!req.body.menuName){
-		  return res.json({
+		  return res.status(404).json({
 		  	message: 'name of menu missing',
 		  	error: true
 		  });	
 		}
 
 		menus.push(req.body)
-		return res.json({
+		return res.status(200).json({
 			message: 'Success',
 			error: false
 		});
-
 		}
 
-
-	getA(req,res){
-		for(let i=0; i < menus.length; i++){
-			if(menus[i].menuid === parseInt(req.params.menuid, 10)){
-				return res.json({
-					menu: menus[i],
+	getMenu(req,res){
+		menus.map(menu =>{
+			if(menu.menuid === parseInt(req.params.menuid, 10)){
+				return res.status(200).json({
+					menu: menu,
 					message: 'success',
 					error: false
 				});
 			}
-		}
+		});
 		return res.status(404).json({
 			message: 'menu not found',
 			error: true
 		});
 	}	
-
 }
-
 
 const menuController = new Menu();
 export default menuController;
