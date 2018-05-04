@@ -7,7 +7,7 @@
 </head>
 <body style="background-image:url('backg.jpg')">
 
-<div class="grid-container">
+
 
 <header>
   <h1>Book-A-Meal</h1>
@@ -24,26 +24,79 @@
    <div class="para2">
     <p>Please sign up or signin to order a meal</p>
     <P>Please fill the boxes marked (*) to sign up</P>
+
+   </div> <br><br>
+
+   <div class="flex-container">
+
+   <div class="one">
+<ul class="cards">
+  <li class="cards__item">
+    <div class="card">
+      <div class="card__image card__image--fence"></div>
+      <div class="card__content">
+        <div class="card__title">Flex</div>
+        <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. </p>
+        <button class="btn btn--block card__btn">Button</button>
+      </div>
+    </div>
+  </li>
+  </div>
+
+
+  <div class="one">
+  <li class="cards__item">
+    <div class="card">
+      <div class="card__image card__image--river"></div>
+      <div class="card__content">
+        <div class="card__title">Flex Grow</div>
+        <p class="card__text">This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.</p>
+        <button class="btn btn--block card__btn">Button</button>
+      </div>
+    </div>
+  </li>
+   
    </div>
 
 
+  <div class="one">
+  <li class="cards__item">
+    <div class="card">
+      <div class="card__image card__image--record"></div>
+      <div class="card__content">
+        <div class="card__title">Flex Shrink</div>
+        <p class="card__text">This defines the ability for a flex item to shrink if necessary. Negative numbers are invalid.</p>
+        <button class="btn btn--block card__btn">Button</button>
+      </div>
+    </div>
+  </li>
+
+  </div>
+
+  <div class="one">
+
+  <li class="cards__item">
+    <div class="card">
+      <div class="card__image card__image--flowers"></div>
+      <div class="card__content">
+        <div class="card__title">Flex Basis</div>
+        <p class="card__text">This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword. The auto keyword means "look at my width or height property."</p>
+        <button class="btn btn--block card__btn">Button</button>
+      </div>
+    </div>
+  </li>
+</ul>
+
+</div>
 
 
-<div class="fslides">
-  <img class="mslides" src="food1.JPG">
-  <img class="mslides" src="food2.JPG">
-  <img class="mslides" src="food3.JPG">
 </div>
 
 
 <a href="#myModal"><button class="signupbtn">sign up</button></a>
 
-<div id="myModal" class="modal">
-
  <div class="op">
-        <div class="modal-header"><span><a href="#close" title="Close" class="close">X</a></span><h1>SIGN UP</h1>
-        </div>
-
+        
         <div class="form1"> 
 
 <form>
@@ -81,16 +134,12 @@
         
     </div>
 
-</div>
-
     
 <a href="#mysModal"><button class="signinbtn">sign in</button></a>
 
-<div id="mysModal" class="modal">
+
 
  <div class="op">
-        <div class="modal-header"><span><a href="#close" title="Close" class="close">X</a></span><h1>SIGN IN</h1>
-        </div>
 
 
 <div class="form2">
@@ -112,12 +161,11 @@
 
 </div>
 
-</div>
 
 
 <footer class="footer">Copyright &copy; John Adesina</footer>
 
-</div>
+
 
 
 
