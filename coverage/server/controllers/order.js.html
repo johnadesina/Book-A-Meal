@@ -32,7 +32,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">90% </span>
@@ -109,12 +109,7 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,10 +122,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,28 +136,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,9 +164,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,67 +177,62 @@
 const orders = Orders;
 &nbsp;
 class Order {
-	get(req,res){
-		return res.json({
+	getOrders(req,res){
+		return res.status(200).json({
 			order: orders,
 			error: false
 		});
-&nbsp;
 	}
 &nbsp;
-	add(req,res){
+	addOrder(req,res){
 		<span class="missing-if-branch" title="else path not taken" >E</span>if(!req.body.name){
-		  return res.json({
+		  return res.status(404).json({
 		  	message: 'food name missing',
 		  	error: true
 		  });	
 		}
-&nbsp;
 <span class="cstat-no" title="statement not covered" >		orders.push(req.body)</span>
-<span class="cstat-no" title="statement not covered" >		return res.json({</span>
+<span class="cstat-no" title="statement not covered" >		return res.status(200).json({</span>
 			message: 'Success',
 			error: false
 		});
-&nbsp;
 		}
 &nbsp;
-	put(req,res){
-		for(let i=0; i &lt; orders.length; i++){
-			if(orders[i].orderid === parseInt(req.params.orderid, 10)){
-				orders[i].mealOp1 = req.body.mealOp1;
-				orders[i].mealOp2 = req.body.mealOp2;
-				orders[i].mealOp3 = req.body.mealOp3;
-				orders[i].total = req.body.total;
-				return res.json({
+	putOrder(req,res){
+		orders.map(order =&gt;{
+			if(order.orderid === parseInt(req.params.orderid, 10)){
+				order.mealOp1 = req.body.mealOp1;
+				order.mealOp2 = req.body.mealOp2;
+				order.mealOp3 = req.body.mealOp3;
+				order.total = req.body.total;
+				return res.status(200).json({
 					message: 'Success',
 					error: false
 				});
 			}
-		}
+		});
 		return res.status(404).json({
 			message: 'order not found',
 			error: true
 		});
 	}
 &nbsp;
-	getA(req,res){
-		for(let i=0; i &lt; orders.length; i++){
-			if(orders[i].orderid === parseInt(req.params.orderid, 10)){
-				return res.json({
-					order: orders[i],
+	getOrder(req,res){
+		orders.map(order =&gt;{
+			if(order.orderid === parseInt(req.params.orderid, 10)){
+				return res.status(200).json({
+					order: order,
 					message: 'success',
 					error: false
 				});
 			}
-		}
+		});
 		return res.status(404).json({
 			message: 'order not found',
 			error: true
 		});
 	}	
-&nbsp;
 }
-&nbsp;
 &nbsp;
 const orderController = new Order();
 export default orderController;</pre></td></tr>
@@ -256,7 +241,7 @@ export default orderController;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 30 2018 09:46:30 GMT+0200 (W. Europe Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 04 2018 14:14:15 GMT+0200 (W. Europe Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
