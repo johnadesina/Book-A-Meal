@@ -8,7 +8,7 @@ require('dotenv').config();
 const Users = model.Users;
 class User {
   signup(req, res) {
-    const {email, username, firstName, phoneno, lastName, password, confirmPassword} = req.body;
+    const {email, username, firstname, phoneno, lastname, password, confirmPassword} = req.body;
     Users.find({
       where: {
         $or: [
@@ -23,8 +23,8 @@ class User {
             email,
             username,
             phoneno,
-            firstName,
-            lastName,
+            firstname,
+            lastname,
             password: bcrypt.hashSync(password, 10)
           })
             .then((newUser) => { 
@@ -34,8 +34,8 @@ class User {
               res.status(201).send({
                 message: 'Signup Successful',
                 username,
-                firstName,
-                lastName,
+                firstname,
+                lastname,
                 email,
                 Token: token
               });
