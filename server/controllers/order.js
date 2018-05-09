@@ -4,7 +4,7 @@ import Sequelize from 'sequelize';
 import Auth from '../middlewares/authentication';
 import bcrypt from 'bcryptjs';
 
-const orders = model.Order;
+//const orders = model.Order;
 
 class MakeOrder {
 	getOrders(req,res){

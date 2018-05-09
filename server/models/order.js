@@ -23,10 +23,10 @@ export default (sequelize, DataTypes) => {
   });
   Order.associate = models => {
     Order.belongsTo(models.Users, {
-      foreignKey: 'userId',
+      foreignKey: 'userId'
     });
     Order.hasMany(models.Meal, {
-      foreignKey: 'mealId',
+      foreignKey: 'mealId'
     });
   };
   return Order;

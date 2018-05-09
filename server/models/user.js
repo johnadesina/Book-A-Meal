@@ -1,15 +1,15 @@
 export default (sequelize, DataTypes) => {
-  var Users = sequelize.define('Users', {
-    firstname: {
+  const Users = sequelize.define('Users', {
+    firstName: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    lastname: {
+    lastName: {
         type: DataTypes.STRING,
         allowNull: false
     },
     phoneno: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     email: {
     type: DataTypes.STRING,
@@ -30,10 +30,6 @@ export default (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     allowNull: false
   },
-  confirmPassword: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   role: {
     type: DataTypes.STRING,
     allownull: false,
@@ -47,9 +43,11 @@ export default (sequelize, DataTypes) => {
     });
     Users.hasMany(models.Meal, {
       foreignKey: 'userId',
+      onDelete: 'CASCADE'
     }); 
     Users.hasMany(models.Menu, {
       foreignKey: 'userId',
+      onDelete: 'CASCADE'
     });     
   };
   return Users;

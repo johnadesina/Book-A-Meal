@@ -13,15 +13,15 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      firstname: {
+      firstName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       phoneno: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      lastname: {
+      lastName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -32,10 +32,6 @@ module.exports = {
         unique: true
       },
       password: {
-        type: Sequelize.STRING,
-        allownull: false,
-      },
-      confirmPassword: {
         type: Sequelize.STRING,
         allownull: false,
       },

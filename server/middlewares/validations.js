@@ -1,16 +1,16 @@
 class Validation {
   static signup(req, res, next) {
     const {
- username, firstname, lastname, email, phoneno, password, confirmPassword } = req.body;
+ username, firstName, lastName, email, phoneno, password} = req.body;
     if (!username || typeof username !== 'string') {
       return res.status(400).send({
         username: 'Please Enter Username'
       });
-    } else if (!firstname || typeof firstname !== 'string') {
+    } else if (!firstName || typeof firstName !== 'string') {
       return res.status(400).send({
         email: 'Please Enter Your First Name'
       });
-    } else if (!lastname || typeof lastname !== 'string') {
+    } else if (!lastName || typeof lastName !== 'string') {
       return res.status(400).send({
         email: 'Please Enter Your Last Name'
       });
@@ -30,11 +30,7 @@ class Validation {
       return res.status(400).send({
         password: 'Password is too short!'
       });
-    } else if (password !== confirmPassword) {
-      return res.status(400).send({
-        password: 'password does not match'
-      });
-    } next();
+    }  next();
   }
   static signin(req, res, next) {
     const { username, password } = req.body;
@@ -52,11 +48,11 @@ class Validation {
     const {
 		userId, mealName, mealPrice
 } = req.body;
-    if (!mealName || typeof eventType !== 'string') {
+    if (!mealName || typeof mealName !== 'string') {
       res.status(400).send({
         message: 'Please Provide a meal name'
       });
-    } else if (!mealPrice || typeof mealPrice !== 2) {
+    } else if (!mealPrice || isNaN(mealPrice)) {
       res.status(400).send({
         message: 'Please write the price of the meal'
       });

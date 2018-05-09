@@ -7,7 +7,7 @@ import validate from '../middlewares/validations';
 const router = express.Router();
 
 router.get('/', Auth.Verify, order.getOrders);
-router.get('/:id', Auth.Verify, order.getOrder);
+router.get('/:id', Auth.Verify, Auth.Admin, order.getOrder);
 router.post('/', Auth.Verify, validate.makeOrder, order.addOrder);
 router.put('/:id', Auth.Verify, validate.makeOrder, order.putOrder);
 

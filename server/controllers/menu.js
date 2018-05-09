@@ -13,7 +13,7 @@ class SetMenu {
       .then((getMenus) => {
         res.status(200).send({
           message: 'Successful',
-          getAll
+          getMenus
         });
       });
 	}

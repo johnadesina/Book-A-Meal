@@ -1,44 +1,73 @@
-import model from '../models/meal';
+import db from '../models/index';
 import jwt from 'jsonwebtoken';
 import Sequelize from 'sequelize';
 import Auth from '../middlewares/authentication';
 import bcrypt from 'bcryptjs';
 
-const meals = model.Meal;
+
+const user = db.Users.id
 
 class MealGiver {
-	getMeals(req,res){
-	return meals
+	static getMeals(req,res){
+	return db.Meal
       .all()
-      .then((getMeals) => {
+      .then((Meals) => {
         res.status(200).send({
           message: 'Successful',
-          getAll
+          Meals
         });
       });
 	}
 
 	addMeal(req,res){
-		const {mealName, mealPrice, userId} = req.body;
-    const Decoded = jwt.decode(req.headers.token);
-    meals.create({
-      userId: req.decoded.id,
-      mealName,
-      mealPrice
+	  const {
+      mealName, mealPrice, userId
+    } = req.body;
+    db.Meal.find({
+      where: {
+           mealName
+      }
     })
-      .then(created => res.status(200).send({
-        message: 'Meal Added Successfully',
-        created
-      }))
-      .catch(err => res.status(500).send({
-        message: 'Error occured!'
-      }));
+      .then((found) => {
+        if (found) {
+          let mealName
+          if (found.mealName === mealName) {
+            email = 'Type of meal already exits';
+          }
+          return res.status(404).send({
+            mealName
+          });
+        }
+      });
+    return db.Meal.create({
+      userId,
+      mealPrice,
+      mealName
+    })
+      .then((meal) => {
+        const newMeal = {
+          id: db.Meal.id,
+          mealPrice: db.Meal.mealPrice,
+          mealName: db.Meal.mealName,
+          userId: user
+        };
+        res.status(201).send({
+          message: 'Meal Added Successfully',
+          newMeal
+        });
+      })
+    
+      .catch(() => {
+        res.status(500).send({
+          message: 'some error occured!'
+        });
+      });
 		}
 
 	putMeal(req,res){
 	const {userId, mealName, mealPrice} = req.body;
     const Decoded = jwt.decode(req.headers.token);
-    meals.findOne({
+    db.Meal.findOne({
       where: {
         userId: req.decoded.id,
       }
@@ -49,7 +78,7 @@ class MealGiver {
             message: 'Meal Not Found',
           });
         }
-        return meals
+        return db.Meal
           .update({
             userId: req.body.userId || meals.userId,
             mealName: req.body.mealName || meals.mealName,
@@ -66,7 +95,7 @@ class MealGiver {
 	}
 
 	deleteMeal(req,res){
-	meals.find ({
+	db.Meal.find ({
         where: {
           userId: req.decoded.id,
         }
@@ -78,7 +107,7 @@ class MealGiver {
           message: 'Meal Not Found',
         });
       } else {
-      return meals
+      return db.Meal
         .destroy()
         .then(() => res.status(200).send({
             message: 'Meal has been deleted'
@@ -89,7 +118,7 @@ class MealGiver {
 	}
 
 	getMeal(req,res){
-		return meals
+		return db.Meal
     .findById(req.params.id).then(found => {
       if (!found) {
         res.status(404).send({

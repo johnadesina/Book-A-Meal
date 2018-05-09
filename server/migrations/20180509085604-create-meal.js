@@ -8,23 +8,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      mealName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      mealPrice: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
         references: {
           model: 'Users',
           key: 'id',
           as: 'userId'
         }
-      }
+      },
+      mealName: {
+        type: Sequelize.STRING,
+        allowNull:false
+      },
+      mealPrice: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
