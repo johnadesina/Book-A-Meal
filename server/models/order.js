@@ -25,9 +25,6 @@ export default (sequelize, DataTypes) => {
     Order.belongsTo(models.Users, {
       foreignKey: 'userId'
     });
-    Order.hasMany(models.Meal, {
-      foreignKey: 'mealId'
-    });
   };
   return Order;
 };

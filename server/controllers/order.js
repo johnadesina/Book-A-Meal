@@ -1,4 +1,4 @@
-import model from '../models/order';
+import db from '../models/index';
 import jwt from 'jsonwebtoken';
 import Sequelize from 'sequelize';
 import Auth from '../middlewares/authentication';
@@ -8,7 +8,7 @@ import bcrypt from 'bcryptjs';
 
 class MakeOrder {
 	getOrders(req,res){
-		return orders
+		return db.Order
       .all()
       .then((getAll) => {
         res.status(200).send({
@@ -70,7 +70,7 @@ class MakeOrder {
 	}
 
 	getOrder(req,res){
-		return orders
+		return db.Order
     .findById(req.params.id).then(found => {
       if (!found) {
         res.status(404).send({

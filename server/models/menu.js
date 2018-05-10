@@ -49,9 +49,6 @@ export default (sequelize, DataTypes) => {
     Menu.belongsTo(models.Users, {
       foreignKey: 'userId',
     });
-    Menu.hasMany(models.Meal, {
-      foreignKey: 'mealId',
-    });
   };
   return Menu;
 };

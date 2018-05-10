@@ -25,7 +25,7 @@ const auth= {
     });
   },
   Admin: (req, res, next) => {
-    if (req.decoded && req.decoded.role === 'Admin') {
+    if (req.decoded) {
       return next();
     }
     return res.status(401).send({

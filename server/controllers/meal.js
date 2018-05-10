@@ -8,7 +8,7 @@ import bcrypt from 'bcryptjs';
 const user = db.Users.id
 
 class MealGiver {
-	static getMeals(req,res){
+	getMeals(req,res){
 	return db.Meal
       .all()
       .then((Meals) => {
@@ -32,7 +32,7 @@ class MealGiver {
         if (found) {
           let mealName
           if (found.mealName === mealName) {
-            email = 'Type of meal already exits';
+            email = 'Type of meal already exists';
           }
           return res.status(404).send({
             mealName
@@ -46,7 +46,6 @@ class MealGiver {
     })
       .then((meal) => {
         const newMeal = {
-          id: db.Meal.id,
           mealPrice: db.Meal.mealPrice,
           mealName: db.Meal.mealName,
           userId: user
@@ -67,9 +66,9 @@ class MealGiver {
 	putMeal(req,res){
 	const {userId, mealName, mealPrice} = req.body;
     const Decoded = jwt.decode(req.headers.token);
-    db.Meal.findOne({
+    db.Meal.find({
       where: {
-        userId: req.decoded.id,
+        userId: req.decoded.id
       }
     })
       .then(meals => {

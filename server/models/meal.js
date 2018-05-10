@@ -2,7 +2,8 @@ export default (sequelize, DataTypes) => {
   const Meal = sequelize.define('Meal', {
     userId: {
     	type: DataTypes.INTEGER,
-    	allowNull: false
+    	allowNull: false,
+    	unique: true
     },
     mealName: {
     	type: DataTypes.STRING,

@@ -1,19 +1,19 @@
-import model from '../models/menu';
+import db from '../models/index';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Sequelize from 'sequelize';
 import Auth from '../middlewares/authentication';
 
-const menus = model.Menu;
+//const menus = model.Menu;
 
 class SetMenu {
 	getMenus(req,res){
-		return menus
+		return db.Menu
       .all()
-      .then((getMenus) => {
+      .then((Menus) => {
         res.status(200).send({
           message: 'Successful',
-          getMenus
+          Menus
         });
       });
 	}
@@ -45,7 +45,7 @@ class SetMenu {
 
 
 	getMenu(req,res){
-	return menus
+	return db.Menu
     .findById(req.params.id).then(found => {
       if (!found) {
         res.status(404).send({
