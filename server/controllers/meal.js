@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs';
 
 const user = db.Users.id
 
+
 class MealGiver {
 	getMeals(req,res){
 	return db.Meal
@@ -50,6 +51,7 @@ class MealGiver {
       mealName
     })
       .then((meal) => {
+      	console.log(user)
         const newMeal = {
           mealPrice: db.Meal.mealPrice,
           mealName: db.Meal.mealName,
@@ -70,7 +72,6 @@ class MealGiver {
 
 	putMeal(req,res){
 	const {userId, mealName, mealPrice} = req.body;
-    //const Decoded = jwt.decode(req.headers.token);
     db.Meal.findById(req.params.id)
       .then(meal => {
         if (!meal) {

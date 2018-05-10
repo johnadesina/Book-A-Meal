@@ -25,9 +25,8 @@ class SetMenu {
 
 	addMenu(req,res){
 	const {menuDate, menuName, userId, mealOne, firstPrice, mealTwo, secondPrice, mealThree, thirdPrice, mealFour, fourthPrice} = req.body;
-    const Decoded = jwt.decode(req.headers.token);
-    menu.create({
-      userId: req.decoded.id,
+    db.Menu.create({
+      userId,
       menuName,
       menuDate,
       mealOne,
@@ -39,15 +38,30 @@ class SetMenu {
       mealFour,
       fourthPrice
     })
-      .then(created => res.status(200).send({
+    .then((menu) => {
+        const newMenu = {
+          userId: user,
+          menuName: db.Menu.menuName,
+          menuDate: db.Menu.menuDate,
+          mealOne: db.Menu.mealOne,
+          firstPrice: db.Menu.firstPrice,
+          mealTwo: db.Menu.mealTwo,
+          secondPrice: db.Menu.secondPrice,
+          mealThree: db.Menu.mealThree,
+          thirdPrice: db.Menu.thirdPrice,
+          mealFour: db.Menu.mealFour,
+          fourthPrice: db.Menu.fourthPrice
+        }
+         .then(created => res.status(200).send({
         message: 'Menu Added Successfully',
         created
       }))
+    })
       .catch(err => res.status(500).send({
         message: 'Error occured!'
       }));
-		}
-
+		
+}
 
 	getMenu(req,res){
 	return db.Menu
