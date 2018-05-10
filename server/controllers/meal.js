@@ -16,6 +16,11 @@ class MealGiver {
           message: 'Successful',
           Meals
         });
+      })
+      .catch(() => {
+        res.status(500).send({
+          message: 'some error occured!'
+        });
       });
 	}
 
@@ -65,20 +70,15 @@ class MealGiver {
 
 	putMeal(req,res){
 	const {userId, mealName, mealPrice} = req.body;
-    const Decoded = jwt.decode(req.headers.token);
-    db.Meal.find({
-      where: {
-        userId: req.decoded.id
-      }
-    })
-      .then(meals => {
-        if (!meals) {
+    //const Decoded = jwt.decode(req.headers.token);
+    db.Meal.findById(req.params.id)
+      .then(meal => {
+        if (!meal) {
           return res.status(404).send({
             message: 'Meal Not Found',
           });
         }
-        return db.Meal
-          .update({
+        return meal.update({
             userId: req.body.userId || meals.userId,
             mealName: req.body.mealName || meals.mealName,
             mealPrice: req.body.mealPrice || meals.mealPrice
@@ -94,20 +94,14 @@ class MealGiver {
 	}
 
 	deleteMeal(req,res){
-	db.Meal.find ({
-        where: {
-          userId: req.decoded.id,
-        }
-      })
-      .then(meals => {
-        console.log(meals);
-      if (!meals) {
+	db.Meal.findById(req.params.id)
+      .then(meal => {
+      if (!meal) {
         return res.status(400).send({
           message: 'Meal Not Found',
         });
       } else {
-      return db.Meal
-        .destroy()
+      return meal.destroy()
         .then(() => res.status(200).send({
             message: 'Meal has been deleted'
         }))

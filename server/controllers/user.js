@@ -5,7 +5,7 @@ import Sequelize from 'sequelize';
 
 require('dotenv').config();
 
-//const users = model.Users;
+const user = db.Users.id
 
 class User {
   static signup(req, res) {

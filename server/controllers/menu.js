@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import Sequelize from 'sequelize';
 import Auth from '../middlewares/authentication';
 
-//const menus = model.Menu;
+const user = db.Users.id
 
 class SetMenu {
 	getMenus(req,res){
@@ -14,6 +14,11 @@ class SetMenu {
         res.status(200).send({
           message: 'Successful',
           Menus
+        });
+      })
+      .catch(() => {
+        res.status(500).send({
+          message: 'some error occured!'
         });
       });
 	}

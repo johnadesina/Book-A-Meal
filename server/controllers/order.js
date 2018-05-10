@@ -4,7 +4,7 @@ import Sequelize from 'sequelize';
 import Auth from '../middlewares/authentication';
 import bcrypt from 'bcryptjs';
 
-//const orders = model.Order;
+const user = db.Users.id
 
 class MakeOrder {
 	getOrders(req,res){
@@ -15,13 +15,18 @@ class MakeOrder {
           message: 'Successful',
           getAll
         });
+      })
+      .catch(() => {
+        res.status(500).send({
+          message: 'some error occured!'
+        });
       });
 	}
 
 	addOrder(req,res){
 	const {mealName, mealPrice, userId, Total, mealId} = req.body;
     const Decoded = jwt.decode(req.headers.token);
-    orders.create({
+    db.Order.create({
       userId: req.decoded.id,
       mealName,
       mealPrice,
