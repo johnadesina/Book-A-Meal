@@ -13,6 +13,41 @@ footer {grid-area: footer; }
 
 }
 
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: orange;
+}
+
+.icontainer {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered1 {
+    position: absolute;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: auto;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+label{
+    color: orange;
+}
+
+p{
+    color: orange;
+}
+
 body {
     padding: 0;
     background-color: white;
@@ -54,12 +89,10 @@ header {
     display: grid;
     grid-template-rows: auto auto auto;
     grid-template-columns: auto auto auto;
-    grid-template-areas: 'header header header'
-    'nav nav nav'
-    'para2 para2 para2'
-    'mod1 mod2 mod3 '
-    'mod1 mod2 mod3 '
-    'footer footer footer';  
+    grid-template-areas: 'header header header header'
+    'mod2 mod2 mod3 mod3 '
+    'mod2 mod2 mod3 mod3 '
+    'footer footer footer footer';  
 
     grid-gap: 5px;
     background-color: #FFFFFF
@@ -121,7 +154,7 @@ header {
 
 
 .signupbtn {
-    background-color: #4CAF50;
+    background-color: orange;
     border: none;
     color: white;
     padding: 15px 25px;
@@ -136,7 +169,7 @@ header {
 }
 
 .signinbtn {
-    background-color: #4CAF50;
+    background-color: orange;
     border: none;
     color: white;
     padding: 15px 25px;
@@ -146,17 +179,34 @@ header {
     justify-content: space-around;
 }
 
-
-
-
-
-
-.op {
-    background-color: white;
+.submit {
+    background-color: orange;
 }
 
 
+.f1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: orange;
+}
 
+
+.op {
+    width: 500px;
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+.sign{
+    color: orange;
+}
 
 input[type=text], select {
     width: 100%;
@@ -166,6 +216,14 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
 }
 
 input[type=date], select {
@@ -210,7 +268,7 @@ input[type=password], select {
 
 input[type=submit] {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: orange;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -220,7 +278,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: black;
 }
 
 div {
@@ -374,4 +432,64 @@ img {
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
+}
+
+
+
+.carddiv {
+  min-height: 95vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.row1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 25px;
+}
+
+.card1 {
+  width: 450px;                 /* Set width of cards */
+  display: flex;                /* Children use Flexbox */
+  flex-direction: column;       /* Rotate Axis */
+  border: 1px solid #000000;    /* Set up Border */
+  border-radius: 4px;           /* Slightly Curve edges */
+  overflow: hidden;             /* Fixes the corners */
+  margin: 5px;                  /* Add space between cards */
+}
+
+.card-header1 {
+  color: orange;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  border-bottom: 1px solid #000000;
+  background-color: #E0F7FA;
+  padding: 5px 10px;
+}
+
+.card-main1 {
+  display: flex;              /* Children use Flexbox */
+  flex-direction: column;     /* Rotate Axis to Vertical */
+  justify-content: center;    /* Group Children in Center */
+  align-items: center;        /* Group Children in Center (on cross axis) */
+  padding: 15px 0;            /* Add padding to the top/bottom */
+}
+
+.material-icons {
+  font-size: 36px;
+  color: #0097A7;
+  margin-bottom: 5px;
+}
+
+.main-description1 {
+  color: #0097A7;
+  font-size: 20px;
+  text-align: center;
 }
