@@ -91,7 +91,7 @@ class User {
              username: foundUser.username
            };
           const token = jwt.sign(user, process.env.SECRET_KEY , {
-            expiresIn: 60 * 60 * 24
+            expiresIn: '24h'
           });
           return res.status(200).send({
             message: 'Signin Successful!',
